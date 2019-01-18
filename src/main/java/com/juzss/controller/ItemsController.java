@@ -1,0 +1,29 @@
+package com.juzss.controller;
+
+import com.juzss.dao.ItemsDao;
+import com.juzss.entity.Items;
+import com.juzss.service.ItemsService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.annotation.Resource;
+
+/**
+ * @author itemscontroller的展示代码
+ */
+@Controller
+@RequestMapping("/items")
+public class ItemsController {
+
+    @Autowired
+    private ItemsService itemsService;
+
+    @RequestMapping("/showDetail")
+    public  String showDetail(Model model){
+        Items items = itemsService.findById(1);
+        model.addAttribute("item",items);
+        return  "itemDetail";
+    }
+}
